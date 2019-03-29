@@ -112,7 +112,8 @@ talk =
     result: "resultOfTalk"};
 
 outside = 
-    {name: "outside", color: "", description: "", choices: [], northDoor:null}
+    {name: "outside", color: "", description: "", choices: [], northDoor:null};
+
 foyer = 
     {name: "foyer", color: "FireBrick", 
     description: "You are in the foyer. It has a small table with a letter on it " +
@@ -120,40 +121,48 @@ foyer =
     "to the east is a door to the living room, and to the south is a door that connects to " +
     "the outside. Beware of the outside. ", choices: [openTheLetter],
     draw: drawFoyer, answer: "open the letter",
-    eastDoor : null, westDoor : null, northDoor : null, southDoor : null};
+    eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
+    x: 2, y: 4};
+
 livingRoom = 
     {name: "living room", color: "MidnightBlue", 
     description: "A body is lying on the couch. He seems to be breathing, " +
     "but his whole body is sallow gray. ", choices: [pokeHim],
     draw: drawLivingRoom, answer: "poke him", 
-    eastDoor : null, westDoor : null, northDoor : null, southDoor : null};
+    eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
+    x: 3, y: 4};
 hauntedHallway = 
     {name: "haunted hallway", color: "Black", 
     description: "There are a bunch of picture frames. Your great-grandma's portrait " +
     "is very dusty. ", choices: [wipeDust],
     draw: drawHauntedHallway, answer: "wipe the dust", 
-    eastDoor : null, westDoor : null, northDoor : null, southDoor : null};
+    eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
+    x: 3, y: 3};
 kitchen = 
     {name: "kitchen", color: "LemonChiffon", 
     description: "You see an old cake on the counter and are starving. " +
     "The cake looks questionable. ", choices: [eatIt],
     draw: drawKitchen, answer: "eat the cake", 
-    eastDoor : null, westDoor : null, northDoor : null, southDoor : null};
+    eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
+    x: 2, y: 3};
 upperHallway =  
     {name: "upper hallway", color: "Crimson", 
     description: "A photograph of your great-grandma is hanging on the wall. ",
     choices: [touchIt], draw: drawUpperHallway, answer: "touch it", 
-    eastDoor : null, westDoor : null, northDoor : null, southDoor : null};
+    eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
+    x:2, y:2};
 mainBedroom = 
     {name: "main bedroom", color: "DarkGreen", 
     description: "There is a bed. ", choices: [sleepNow],
     draw: drawMainBedroom, answer: "sleep now", 
-    eastDoor : null, westDoor : null, northDoor : null, southDoor : null};
+    eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
+    x:2, y:1};
 bathroom = 
     {name: "bathroom", color: "Azure", 
     description: "There's someone near the toilet. ",
     choices: [talk], draw: drawBathroom, answer: "talk to her", 
-    eastDoor : null, westDoor : null, northDoor : null, southDoor : null};
+    eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
+    x:3, y:1};
 
 foyer.southDoor = outside;
 foyer.eastDoor = livingRoom;
@@ -169,7 +178,11 @@ mainBedroom.southDoor = upperHallway;
 mainBedroom.eastDoor = bathroom;
 bathroom.westDoor = mainBedroom;
 
+mapRooms = [foyer, livingRoom, hauntedHallway, upperHallway, kitchen, mainBedroom, bathroom];
+
 currentRoom = foyer;
 // currentDirection = "north";
 remainingLives = 5;
 
+// "room" or "map"
+currentView = "room";

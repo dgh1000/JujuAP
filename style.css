@@ -2,7 +2,7 @@ body {
     background-color: slategrey;
     color: white;
     font-size: 130%;
-    font-family: 'Courier New';
+    font-family: 'Courier New', monospace;
 }
 
 #outer {
@@ -48,7 +48,7 @@ input {
     font-size: 90%;
     padding: 5px;
     margin: 3px;
-    font-family: 'Courier New';
+    font-family: 'Courier New', monospace;
 }
 
 .choice-button {
@@ -57,7 +57,7 @@ input {
     font-size: 90%;
     padding: 5px;
     margin: 3px;
-    font-family: 'Courier New';
+    font-family: 'Courier New', monospace;
 }
 
 #continue-button {
@@ -66,7 +66,7 @@ input {
     font-size: 90%;
     padding: 5px;
     margin: 3px;
-    font-family: 'Courier New';
+    font-family: 'Courier New', monospace;
 }
 
 #result-div {
@@ -78,4 +78,11 @@ input {
     font-size: 130%;
     padding: 5px;
     width: 50%;
+}
+
+#switch-button {
+    font-family: 'Courier New', monospace;
+    font-size: 24pt;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

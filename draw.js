@@ -7,21 +7,6 @@ southY = 500;
 westX = 30;
 westY = 280; 
 
-function drawMap() {
-    ctx.font = "20px 'Courier New'";
-    ctx.clearRect(0, 0, cw, ch);
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, cw, ch);
-    ctx.fillStyle = "black";
-    ctx.fillText("north", northX, northY);
-    ctx.fillText("south", southX, southY);
-    ctx.fillText("east", eastX, eastY);
-    ctx.fillText("west", westX, westY);
-    drawRoomName(eastX - 15, eastY + 25, currentRoom.eastDoor);
-    drawRoomName(northX - 30, northY + 25, currentRoom.northDoor);
-    drawRoomName(westX - 30, westY + 25, currentRoom.westDoor);
-    drawRoomName(southX - 30, southY + 25, currentRoom.southDoor);
-}
 
 function drawRoomName(x, y, room) {
     if(room) {

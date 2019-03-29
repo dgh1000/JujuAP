@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width">
     <title>Page 1</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
   </head>
   <body>
     <div id="outer">
@@ -27,6 +22,8 @@
             <div id="choice-display"></div>
         </div>
         <div id="right">
+            <input type="button" id="switch-button" 
+                   value="switch to" onclick="switchView()">
             <canvas id="canvas" width="850" height="550"></canvas>
             <div id="button-lives">
                 <div id="buttons">
@@ -46,6 +43,7 @@
     </div>
     <script src="draw.js"></script> 
     <script src="setup.js"></script> 
+    <script src="drawMap.js"></script> 
     <script src="script.js"></script> 
   </body>
 </html>

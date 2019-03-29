@@ -45,12 +45,38 @@ function refreshStillAlive() {
     var result = document.getElementById("result-div");
     result.style = "display: none";
     unGrayOut();
-    drawMap();
-    if(currentRoom["draw"]) {
-        currentRoom.draw();
+
+    sb = document.getElementById("switch-button");
+    if (currentView == "map") {
+      sb.setAttribute("value", "switch to room");
+    } else {
+      sb.setAttribute("value", "switch to map");
+    }
+
+    ctx.font = "20px 'Courier New'";
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, cw, ch);
+    ctx.fillStyle = "black";
+
+    if (currentView == "room") {
+        if (currentRoom["draw"]) {
+            currentRoom.draw();
+        }
+    } else {
+        drawMap();
     }
 }
 
+
+function switchView() {
+    if (currentView == "map") {
+        currentView = "room";
+    } else {
+        currentView = "map";
+    }
+    refresh();
+}
 
 
 function refreshChoices() {
