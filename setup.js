@@ -4,83 +4,94 @@ cw = canv.width;
 ch = canv.height;
 
 function hideMainStuff() {
-    // var h = document.getElementById("hide");
-    // h.style = "display: none";
+    var h = document.getElementById("outer");
+    h.style = "display: none";
+    var r = document.getElementById("result-div");
+    r.style = "display: block";
 }
 
 function showMainStuff() {
-    // var h = document.getElementById("hide");
-    // h.style = "display: block";
+    var h = document.getElementById("outer");
+    h.style = "display: block";
+    var r = document.getElementById("result-div");
+    r.style = "display: none";
+}
+
+function lostLifeMessage() {
+    if (remainingLives > 0) {
+        return "You lose a life. Only " + remainingLives + " lives left!";
+    } else {
+        hideMainStuff();
+        yl = document.getElementById("you-lose");
+        yl.style = "display: block";
+        cb = document.getElementById("continue-button");
+        cb.style = "display: none";
+        return "You lose a life. No lives left!";
+    }
+}
+
+
+function notLostLifeMessage() {
+    return "You still have " + remainingLives + " lives left.";
 }
 
 function resultOfOpenTheLetter() {
-    // alert("result of open the letter, you open the letter and worms crawl out.");
     var r = document.getElementById("result-div");
     r.style = "display: block;";
     var p = document.getElementById("result");
-    p.innerHTML = "Now that you have opened the letter, you read it and it says, 'You will be surprised at what helps you win'. ";
-    grayOut();
+    p.innerHTML = "Now that you have opened the letter, you read it and " +
+        "it says, 'You will be surprised at what helps you win'. " + 
+        notLostLifeMessage();
+    hideMainStuff();
 }
 
 function resultOfPokeHim() {
-    // alert("result of poke him, ")
-    var r = document.getElementById("result-div");
-    r.style = "display: block;";
     var p = document.getElementById("result");
-    p.innerHTML = "The corpse has gangrene that quickly spreads to you. You lose a life.";
     remainingLives -= 1; 
-    grayOut();
+    p.innerHTML = "The corpse has gangrene that quickly spreads to you. " + 
+        lostLifeMessage();
+    hideMainStuff();
 }
 
 function resultOfWipeDust() {
-    var r = document.getElementById("result-div");
-    r.style = "display: inline;";
     var p = document.getElementById("result");
-    p.innerHTML = "You inhale the dust and choke. You lose a life.";
     remainingLives -= 1; 
+    p.innerHTML = "You inhale the dust and choke. " + lostLifeMessage();
     hideMainStuff();
-    grayOut();
 }
 
 function resultOfEatIt() {
-    var r = document.getElementById("result-div");
-    r.style = "display: inline;";
     var p = document.getElementById("result");
     p.innerHTML = "The cake is filled with vegetables, which gives you " +
     "the strength to break out of the house. YOU ESCAPE!";
+    haveWon = true;
     hideMainStuff();
-    grayOut();
 }
 
 function resultOfTouchIt() {
-    var r = document.getElementById("result-div");
-    r.style = "display: inline;";
+    remainingLives -= 1;
     var p = document.getElementById("result");
     p.innerHTML = "Leeches were hidden inside the picture and they " +
-    "start sucking your blood. You lose a life.";
-    remainingLives -= 1;
+    "start sucking your blood. " + lostLifeMessage();
     hideMainStuff();
-    grayOut();
 }
 
 function resultOfSleepNow() {
-    var r = document.getElementById("result-div");
-    r.style = "display: inline;";
+    remainingLives -= 1;
     var p = document.getElementById("result");
     p.innerHTML = "You wake up and a clown is sleeping next to you, " +
-    "a knife in its hand. You lose a life.";
-    remainingLives -= 1;
+        "a knife in its hand. " + lostLifeMessage();
     hideMainStuff();
-    grayOut();
 }
 
 function resultOfTalk() {
-    var r = document.getElementById("result-div");
-    r.style = "display: inline;";
     var p = document.getElementById("result");
     p.innerHTML = "She flushes you down the toilet and YOU ESCAPE!";
+    yw = document.getElementById("you-win");
+    yw.style = "display:block";    
+    cb = document.getElementById("continue-button");
+    cb.style = "display: none";
     hideMainStuff();
-    grayOut();
 }
 
 openTheLetter = 
@@ -116,10 +127,8 @@ outside =
 
 foyer = 
     {name: "foyer", color: "FireBrick", 
-    description: "You are in the foyer. It has a small table with a letter on it " +
-    "from your dead great grandma. To your north is a door to the upper hallway, " +
-    "to the east is a door to the living room, and to the south is a door that connects to " +
-    "the outside. Beware of the outside. ", choices: [openTheLetter],
+    description: "The foyer has a small table with a letter on it " +
+    "from your dead great grandma.", choices: [openTheLetter],
     draw: drawFoyer, answer: "open the letter",
     eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
     x: 2, y: 4};
@@ -137,52 +146,51 @@ hauntedHallway =
     "is very dusty. ", choices: [wipeDust],
     draw: drawHauntedHallway, answer: "wipe the dust", 
     eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
-    x: 3, y: 3};
+    x: 4, y: 4};
 kitchen = 
     {name: "kitchen", color: "LemonChiffon", 
     description: "You see an old cake on the counter and are starving. " +
     "The cake looks questionable. ", choices: [eatIt],
     draw: drawKitchen, answer: "eat the cake", 
     eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
-    x: 2, y: 3};
+    x:4, y: 3};
 upperHallway =  
     {name: "upper hallway", color: "Crimson", 
     description: "A photograph of your great-grandma is hanging on the wall. ",
     choices: [touchIt], draw: drawUpperHallway, answer: "touch it", 
     eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
-    x:2, y:2};
+    x:2, y:3};
 mainBedroom = 
     {name: "main bedroom", color: "DarkGreen", 
     description: "There is a bed. ", choices: [sleepNow],
     draw: drawMainBedroom, answer: "sleep now", 
     eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
-    x:2, y:1};
+    x:2, y:2};
 bathroom = 
     {name: "bathroom", color: "Azure", 
     description: "There's someone near the toilet. ",
     choices: [talk], draw: drawBathroom, answer: "talk to her", 
     eastDoor : null, westDoor : null, northDoor : null, southDoor : null,
-    x:3, y:1};
+    x:3, y:2};
 
 foyer.southDoor = outside;
 foyer.eastDoor = livingRoom;
 foyer.northDoor = upperHallway;
 livingRoom.westDoor = foyer;
-livingRoom.northDoor = hauntedHallway;
-hauntedHallway.southDoor = livingRoom;
-hauntedHallway.westDoor = kitchen;
-kitchen.eastDoor = hauntedHallway;
+livingRoom.eastDoor = hauntedHallway;
+hauntedHallway.westDoor = livingRoom;
+hauntedHallway.northDoor = kitchen;
+kitchen.southDoor = hauntedHallway;
 upperHallway.southDoor = foyer;
 upperHallway.northDoor = mainBedroom;
 mainBedroom.southDoor = upperHallway;
 mainBedroom.eastDoor = bathroom;
 bathroom.westDoor = mainBedroom;
 
-mapRooms = [foyer, livingRoom, hauntedHallway, upperHallway, kitchen, mainBedroom, bathroom];
+mapRooms = [foyer, livingRoom, hauntedHallway, upperHallway, kitchen, 
+            mainBedroom, bathroom];
 
 currentRoom = foyer;
-// currentDirection = "north";
-remainingLives = 5;
-
-// "room" or "map"
+remainingLives = 2;
 currentView = "room";
+haveWon = false;

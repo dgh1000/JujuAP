@@ -1,29 +1,50 @@
 body {
     background-color: slategrey;
     color: white;
-    font-size: 130%;
-    font-family: 'Courier New', monospace;
+    font-size: 140%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+    margin: 10px;
+    font-size: 30pt;
+    font-weight: 700;
+}
+
+h2 {
+    margin: 10px;
+    font-size: 24pt;
+    font-weight: 600;
 }
 
 #outer {
     display: flex;
+    flex-direction: column;
+    width: 980px;
+}
+
+#result-div {
+    width: 980px;
+}
+
+#lower {
+    display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 #canvas {
     border: 2px solid white;
 }
 
-#left {
-    width: 500px;
-    border: 2px solid white;
-    padding: 15px;
-    margin-bottom: 50px;
-}
-
 #buttons {
     display: flex;
     flex-direction: column;
+}
+
+#actions {
+    border: 2px solid white;
+    width: 100%;
 }
 
 #row1, #row2, #row3 {
@@ -32,34 +53,25 @@ body {
     justify-content: center;
 }
 
-/* #button-1, #button-2, #button-3, #button-4 { */
-    /*
-input {
-    font-size: 100%;
-    padding: 15px;
-    margin: 3px;
-    font-family: 'Courier New';
-}
-*/
 
 #button-1, #button-2, #button-3, #button-4 {
-    background-color: ivory;
-    color: slategray;
+    background-color: white;
+    color: black;
     font-size: 90%;
     padding: 5px;
     margin: 3px;
-    font-family: 'Courier New', monospace;
 }
 
 .choice-button {
-    background-color: ivory;
-    color: slategray;
+    background-color: white;
+    color: black;
     font-size: 90%;
     padding: 5px;
-    margin: 3px;
-    font-family: 'Courier New', monospace;
+    margin: 15px;
 }
 
+
+/*
 #continue-button {
     background-color: ivory;
     color: slategray;
@@ -68,21 +80,27 @@ input {
     margin: 3px;
     font-family: 'Courier New', monospace;
 }
-
-#result-div {
-    color: white;
-}
-
-#lives-left {
-    border: 2px solid white;
-    font-size: 130%;
-    padding: 5px;
-    width: 50%;
-}
+*/
 
 #switch-button {
     font-family: 'Courier New', monospace;
     font-size: 24pt;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+#header-message {
+    font-size: 200%;
+}
+
+#lives-left {
+    font-size: 100%;
+    color: black;
+    font-weight: 900;
+    margin-left: 20px;
+    color: navy;
+}
+
+.neat-color {
+    color: navy;
 }

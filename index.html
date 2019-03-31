@@ -5,9 +5,61 @@
     <meta name="viewport" content="width=device-width">
     <title>Page 1</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
   </head>
-  <body>
-    <div id="outer">
+<body>
+  <div id="result-div" style="display:none">
+    <p id="result"></p>
+    <input type="button" id="continue-button" 
+           class="choice-button" value="okay, continue"
+           onclick="refresh()">
+  </div>
+  
+  <div id="you-win" style="display:none">
+    <h1>You win!</h1>
+    <p><a href="index.html">Click</a> to play again.</p>
+  </div>
+  <div id="you-lose" style="display:none">
+    <h1>You lose!</h1>
+    <p><a href="index.html">Click</a> to play again.</p>
+  </div>
+  <div id="outer">
+    <div id="header">
+    </div>
+    <div id="lower">
+      <div id="actions">
+        <h2 style="font-weight: 900" class="neat-color">Available choices:</h2>
+        <div id="choice-list"></div>
+        <h2 style="font-weight: 900" class="neat-color">Available movement:</h2>
+        <div id="buttons">
+          <div id="row1">
+            <input type="button" value="Move North" id="button-1" onclick="move('north')">
+          </div>
+          <div id="row2">
+            <input type="button" value="Move West" id="button-4" onclick="move('west')">
+            <input type="button" value="Move East" id="button-3" onclick="move('east')">
+          </div>
+          <div id="row3">
+            <input type="button" value="Move South" id="button-2" onclick="move('south')">
+          </div>
+        </div>
+        <p id="see-move">To help see where you can move:
+          <input class="choice-button" type="button" value="look at the map"
+                 onclick="switchView()">
+        </p>
+        <p id="see-room">To see the room again:
+          <input class="choice-button" type="button" value="look at the room"
+                 onclick="switchView()">
+        </p>
+      </div>
+      <div id="canvas-div">
+        <!-- original width: 850, height: 550 -->
+        <canvas id="canvas" width="600" height="450"></canvas> 
+      </div>
+    </div>
+  </div>
+
+    <!-- div id="outer">
         <div id="left">
             <div id="result-div" style="display: none"> 
                 <p id="result"></p>
@@ -40,7 +92,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div -->
+
     <script src="draw.js"></script> 
     <script src="setup.js"></script> 
     <script src="drawMap.js"></script> 

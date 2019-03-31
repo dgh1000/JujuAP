@@ -16,8 +16,14 @@ function drawRoomName(x, y, room) {
     }
 }
 
+function tr() {
+    ctx.resetTransform();
+    ctx.translate(-100, -80);
+}
+
 function drawFoyer() {
-    drawRoom();
+    // drawRoom();
+    tr();
     ctx.fillStyle = "saddlebrown";
     ctx.strokeStyle = "saddlebrown";
     drawTable(200, 250, 30, 60, 300);
@@ -26,24 +32,29 @@ function drawFoyer() {
     drawEnvelope(250);
     ctx.fillStyle = "midnightBlue";
     drawLamp();
+    ctx.resetTransform();
 }
 
 function drawLivingRoom() {
-    drawRoom();
+    // drawRoom();
+    tr();
     ctx.fillStyle = "mistyRose";
     ctx.strokeStyle = "black";
     drawCouch(200, 280, 40, 45, 300);
     drawPerson();
     ctx.fillStyle = "dimGray";
     drawLamp();
+    ctx.resetTransform();
 }
 
 function drawHauntedHallway() {
-    drawRoom();
+    // drawRoom();
+    tr();
     drawFrame(200, 200, 60, 80);
     drawFrame(300, 200, 60, 80);
     drawFrame(400, 200, 60, 80);
     drawFrame(500, 200, 60, 80);
+    ctx.resetTransform();
 }
 
 function drawKitchen() {

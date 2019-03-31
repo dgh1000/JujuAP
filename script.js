@@ -1,3 +1,4 @@
+
 function grayOut() {
     var g = document.getElementById("left");
     g.style = "color: lightSteelBlue";
@@ -15,14 +16,16 @@ function unGrayOut() {
 
 function refresh() {
     if(remainingLives <= 0) {
-        refreshDead();
+        return;
     } else {
         refreshStillAlive();
     }
 }
 
 function refreshDead() {
-    // hideMainStuff();
+    hideMainStuff();
+    yl = document.getElementById("you-lose");
+    yl.style = "display: block";
     // var r = document.getElementById("result-die");
     // r.style = "display: block";
     // var result = document.getElementById("result-div");
@@ -30,42 +33,47 @@ function refreshDead() {
 }
 
 function refreshStillAlive() {
-    // var s = "";
-    // s += currentRoom.description + "<br>";
-    // s += "name: " + currentRoom.name + "<br>";
-    // s += "You are facing " + currentDirection + "<br>";
+    showMainStuff();
     var s2 = "";
-    s2 += "<h1>" + currentRoom.name + "</h1>";
-    s2 += "<p id='lives-left'>" + "Lives Left: " + remainingLives + "</p>";
+    s2 += "<span id='header-message'> You are in the " + 
+        currentRoom.name + "</span>";
+    s2 += "<span id='lives-left'>" + "Lives Left: " + 
+        remainingLives + "</span>";
     s2 += "<p>" + currentRoom.description + "</p>";
-    var rd = document.getElementById("room-display");
+    var rd = document.getElementById("header");
     rd.innerHTML = s2;
-    // $("#button-1").get(0).value = room.doorA;
     refreshChoices();
-    var result = document.getElementById("result-div");
-    result.style = "display: none";
-    unGrayOut();
+    // var result = document.getElementById("result-div");
+    // result.style = "display: none";
+    // unGrayOut();
 
-    sb = document.getElementById("switch-button");
+    sb1 = document.getElementById("see-move");
+    sb2 = document.getElementById("see-room");
     if (currentView == "map") {
-      sb.setAttribute("value", "switch to room");
+        sb1.style = "display:none";
+        sb2.style = "display:block";
     } else {
-      sb.setAttribute("value", "switch to map");
+        sb1.style = "display:block";
+        sb2.style = "display:none";
     }
 
-    ctx.font = "20px 'Courier New'";
-    ctx.clearRect(0, 0, cw, ch);
+    ctx.font = "20px 'Source Sans Pro'";
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, cw, ch);
-    ctx.fillStyle = "black";
-
     if (currentView == "room") {
-        if (currentRoom["draw"]) {
-            currentRoom.draw();
-        }
+        var g = ctx.createRadialGradient(cw/2, ch/2, 200.0, cw/2, ch/2, 1200); 
+        g.addColorStop(0, "white");
+        g.addColorStop(1, "darkslategray");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, cw, ch);
+        currentRoom.draw();
     } else {
         drawMap();
     }
+}
+
+
+function handleWin() {
 }
 
 
@@ -80,23 +88,27 @@ function switchView() {
 
 
 function refreshChoices() {
-    var d = document.getElementById("choice-display");
+    var d = document.getElementById("choice-list");
     d.innerHTML = "";
     currentRoom.choices.forEach(function(theChoice) {
+        /*
         var p = document.createElement("p");
         p.setAttribute("class", "choice");
         p.innerHTML = theChoice.long;
         d.appendChild(p);
+        */
         var i = document.createElement("input");
         i.setAttribute("type", "button");
         i.setAttribute("value", theChoice.short);
         i.setAttribute("onclick", theChoice.result + "()");
         i.setAttribute("class", "choice-button");
         d.appendChild(i);
+        /* 
         var p2 = document.createElement("p");
         p2.innerHTML = "If you do not want to " + currentRoom.answer + ", you must click " +
         "on one of the rectangular buttons on the bottom of the screen. ";
         d.appendChild(p2);
+        */
     });
 }
 

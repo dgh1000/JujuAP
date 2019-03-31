@@ -1,5 +1,6 @@
 
-gridSize = 120.0;
+gridW = 300.0;
+gridH = 100.0;
 
 function drawLine(x1, y1, x2, y2) {
     ctx.beginPath();
@@ -11,14 +12,14 @@ function drawLine(x1, y1, x2, y2) {
     ctx.stroke();
 }
 
-function drawRoomMap(r) {
-    rx = r.x * gridSize;
-    ry = r.y * gridSize;
+function drawRoomMap(r, offX, offY) {
+    rx = (r.x - offX) * gridW + cw/2;
+    ry = (r.y - offY) * gridH + ch/2;
     ctx.beginPath();
-    ctx.moveTo(rx-gridSize/3, ry-gridSize/3);
-    ctx.lineTo(rx+gridSize/3, ry-gridSize/3);
-    ctx.lineTo(rx+gridSize/3, ry+gridSize/3);
-    ctx.lineTo(rx-gridSize/3, ry+gridSize/3);
+    ctx.moveTo(rx-gridW/3, ry-gridH/3);
+    ctx.lineTo(rx+gridW/3, ry-gridH/3);
+    ctx.lineTo(rx+gridW/3, ry+gridH/3);
+    ctx.lineTo(rx-gridW/3, ry+gridH/3);
     ctx.closePath();
     ctx.strokeStyle = "black";
     ctx.lineWidth = 1;
@@ -29,20 +30,20 @@ function drawRoomMap(r) {
     }
     ctx.textAlign = "center";
     ctx.fillStyle = "black";
-    ctx.font = "8pt 'Courier New'";
+    ctx.font = "16pt 'Courier New'";
     ctx.fillText(r.name, rx, ry);
     if (r.eastDoor) {
-        drawLine(rx + gridSize/3, ry, rx+2*gridSize/3, ry);
+        drawLine(rx + gridW/3, ry, rx+2*gridW/3, ry);
     }
 
     if (r.westDoor) {
-        drawLine(rx - gridSize/3, ry, rx-2*gridSize/3, ry);
+        drawLine(rx - gridW/3, ry, rx-2*gridW/3, ry);
     }
     if (r.northDoor) {
-        drawLine(rx, ry - gridSize/3, rx, ry-2*gridSize/3);
+        drawLine(rx, ry - gridH/3, rx, ry-2*gridH/3);
     }
     if (r.southDoor) {
-        drawLine(rx, ry + gridSize/3, rx, ry+2*gridSize/3);
+        drawLine(rx, ry + gridH/3, rx, ry+2*gridH/3);
     }
     
 }
@@ -50,7 +51,7 @@ function drawRoomMap(r) {
 function drawMap() {
 
     for (r of mapRooms) {
-        drawRoomMap(r);
+        drawRoomMap(r, currentRoom.x, currentRoom.y);
     }
     /*
     ctx.fillText("north", northX, northY);
